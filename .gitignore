@@ -3,3 +3,7 @@ pw.txt
 *.class
 
 pom.xml
+
+.mvn
+
+.settings
