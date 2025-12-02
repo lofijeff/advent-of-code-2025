@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class First {
 
-  private String currentLine, nextLine;
-  private int sum, currentNumber, nextNumber;
+  private String currentLine;
+  private int sum, currentNumber;
 
   public int getPassword() {
     File textFile = new File("../pw.txt");
@@ -19,25 +19,40 @@ public class First {
 
         if (currentLine.startsWith("L")) {
           String numberString = currentLine.substring(1);
-
           int number = Integer.parseInt(numberString);
-          currentNumber = currentNumber - number;
 
-          System.out.println(currentNumber);
+          for (int i = 0; i < number; i++) {
+            currentNumber = (currentNumber - 1);
+            if (currentNumber < 0) {
+              currentNumber = 99;
+            }
+          }
+
+          if (currentNumber == 0) {
+            sum++;
+          }
 
         } else if (currentLine.startsWith("R")) {
+          String numberString = currentLine.substring(1);
+          int number = Integer.parseInt(numberString);
 
-          System.out.println("He finns RRRR");
+          for (int i = 0; i < number; i++) {
+            currentNumber = (currentNumber + 1);
+
+            if (currentNumber > 99) {
+              currentNumber = 0;
+            }
+          }
+
+          if (currentNumber == 0) {
+            sum++;
+          }
         }
-
-        System.out.println(currentLine);
       }
     } catch (FileNotFoundException e) {
       System.out.println("Oh shit");
       e.printStackTrace();
     }
-
-    return 3;
-
+    return sum;
   }
 }
